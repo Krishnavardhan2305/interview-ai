@@ -4,8 +4,10 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import BlacklistToken from "../models/blacklistmodel.js";
 export const register=async(req,res)=>{
-    const {username,email,password}=req.body;
     try {
+        const {username,email,password}=req.body;
+        console.log(username,email);
+        
         if(!username || !email || !password){
             return res.status(400).json({message:"Please provide all required fields"});
         }

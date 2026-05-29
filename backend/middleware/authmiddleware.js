@@ -1,5 +1,5 @@
-import jwt from jsonwebtoken;
-import BlacklistToken from "../models/blacklistmodel";
+import jwt from "jsonwebtoken";
+import BlacklistToken from "../models/blacklistmodel.js";
 
 export const verifyToken=async(req,res,next)=>{    
 
