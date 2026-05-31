@@ -1,0 +1,38 @@
+{
+  "matchScore": 92,
+  "summary": "Krishna Vardhan is an excellent fit for the Associate Software Engineer role at TechNova Solutions. Their profile demonstrates a strong foundation in Computer Science fundamentals, including Data Structures and Algorithms, and proficiency in multiple programming languages (Java, JavaScript, C++, Python) as required. Krishna's hands-on experience with the MERN stack (React, Node.js, Express.js, MongoDB) and Spring Boot, as evidenced by their internship and impressive project portfolio, directly aligns with the job's technical requirements and preferred skills. They have practical experience in developing REST APIs, implementing authentication, and working with both SQL and NoSQL databases. The candidate's enthusiasm for learning, problem-solving abilities, and collaborative experience further align with the company's expectations. While core skills are strong, there are minor areas for explicit development in Docker, TypeScript, and deeper system design concepts.",
+  "technicalQuestions": [
+    "Explain the concept of an event loop in Node.js and how it handles asynchronous operations.",
+    "Describe your approach to designing a RESTful API for a new feature in a web application, including considerations for idempotency and versioning.",
+    "You mentioned building an Employee Management System. How would you design the database schema (MongoDB) to efficiently handle complex queries related to attendance, leave management, and performance reviews?",
+    "Given an unsorted array of integers, write an efficient algorithm to find the maximum sum of a contiguous subarray. Discuss its time and space complexity.",
+    "What are React Hooks, and when would you choose to use `useState` versus `useReducer` for state management in a component?",
+    "Explain the core principles of Object-Oriented Programming (OOP) and provide an example of how you applied them in your Spring Boot project.",
+    "How did you implement JWT (JSON Web Tokens) authentication in your internship or projects? Discuss its advantages and potential vulnerabilities.",
+    "Differentiate between SQL and NoSQL databases. In which scenarios would you prefer MongoDB over MySQL or PostgreSQL?",
+    "Discuss different Git branching strategies you are familiar with and which one you would recommend for a collaborative project team.",
+    "What is middleware in Express.js? Provide an example of a custom middleware you might create for an application."
+  ],
+  "behavioralQuestions": [
+    "Tell me about a challenging technical problem you encountered during your internship or a project. How did you approach solving it, and what did you learn from the experience?",
+    "Describe a time when you had to collaborate with a cross-functional team, specifically frontend developers, to deliver a feature. What was your role, and how did you ensure effective communication?",
+    "Given that this is an Associate role, there will be a significant learning curve. How do you approach learning new technologies or frameworks, and can you give an example of a time you successfully learned something new on the job or for a project?",
+    "Tell me about a time when you took ownership of a task or project that wasn't explicitly assigned to you. What was the outcome, and what motivated you?",
+    "TechNova Solutions values a strong learning attitude and a passion for technology. What excites you most about software engineering, and how do you stay updated with the latest industry trends and technologies?"
+  ],
+  "skillGaps": [
+    "Docker: The job description lists Docker under both 'Technical Skills Expected' and 'Preferred Skills', but it's not explicitly mentioned in the candidate's skills or projects.",
+    "TypeScript: Listed under 'Technical Skills Expected' for Frontend, but not in the candidate's technical skills.",
+    "AWS (Practical Experience): While the candidate has an 'AWS Cloud Practitioner' certification, explicit project experience leveraging AWS services (beyond Cloudinary which is listed) is not highlighted. The JD lists 'AWS' under Preferred Skills.",
+    "System Design Fundamentals: Listed as a 'Preferred Skill'. While implied through full-stack project development, explicitly demonstrating knowledge of scalability, distributed systems, and architectural patterns could be beneficial."
+  ],
+  "preparationPlan": [
+    "Day 1: Data Structures and Algorithms Refresher - Focus on common interview topics (arrays, strings, linked lists, trees, graphs, sorting, searching). Solve 3-4 medium-hard problems on platforms like LeetCode or HackerRank. Review time and space complexity analysis.",
+    "Day 2: MERN Stack Deep Dive - Review advanced React concepts (hooks, context API, performance optimization), Node.js event loop, middleware in Express.js, and MongoDB indexing strategies. Be ready to explain project architectures.",
+    "Day 3: Java & Spring Boot Fundamentals - Refresh core Java OOP concepts, Spring Boot annotations (e.g., @Autowired, @RestController, @Service), Dependency Injection, and building RESTful APIs with Spring Boot. Understand differences between various Spring annotations.",
+    "Day 4: Database & API Design - Review SQL (joins, indexing, transactions) and NoSQL (document model, scaling) concepts. Practice designing a simple REST API, considering status codes, error handling, and security best practices (e.g., JWT).",
+    "Day 5: System Design & Core Concepts - Study basic system design principles for web applications (scalability, load balancing, caching, database sharding). Familiarize yourself with basic concepts of Docker, its use cases, and common commands (e.g., build, run, push).",
+    "Day 6: Skill Gap Focus & Soft Skills - Research TypeScript fundamentals, its benefits, and how it integrates with React. Prepare for behavioral questions by practicing STAR method responses, focusing on communication, teamwork, problem-solving, and learning agility. Review your resume and be ready to discuss every project in detail.",
+    "Day 7: Mock Interviews & Final Review - Conduct a mock technical interview (with a peer or online tool) covering DSA and system-specific questions. Follow up with a mock behavioral interview. Review company values and 'What We Expect' section to align your answers. Ensure clear explanations for all your projects."
+  ]
+}
