@@ -1,0 +1,142 @@
+.result-page {
+    min-height: 100vh;
+    background: #07101f;
+    display: grid;
+    grid-template-columns: 240px 1fr 280px;
+    color: white;
+}
+
+.sidebar {
+    background: #0c1728;
+    border-right: 1px solid #1f2937;
+    padding: 20px;
+
+    h3 {
+        margin-bottom: 20px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 10px;
+        border: none;
+        background: transparent;
+        color: #cbd5e1;
+        text-align: left;
+        cursor: pointer;
+        border-radius: 10px;
+
+        &.active {
+            background: #ff2d75;
+            color: white;
+        }
+    }
+}
+
+.content {
+    padding: 30px;
+    overflow-y: auto;
+
+    h2 {
+        margin-bottom: 20px;
+    }
+}
+
+.question-card {
+    background: #101d34;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    padding: 15px;
+
+    summary {
+        cursor: pointer;
+        font-weight: 600;
+    }
+}
+
+.answer-section {
+    margin-top: 15px;
+
+    h4 {
+        color: #ff2d75;
+        margin-bottom: 5px;
+        margin-top: 15px;
+    }
+
+    p {
+        color: #cbd5e1;
+        line-height: 1.7;
+    }
+}
+
+.analytics {
+    background: #0c1728;
+    border-left: 1px solid #1f2937;
+    padding: 20px;
+}
+
+.score-card {
+    text-align: center;
+}
+
+.score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 6px solid #22c55e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.skill-gap-card {
+    margin-top: 30px;
+
+    h3 {
+        margin-bottom: 15px;
+    }
+}
+
+.badge {
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.low {
+    background: #14532d;
+}
+
+.medium {
+    background: #854d0e;
+}
+
+.high {
+    background: #7f1d1d;
+}
+
+.roadmap-card {
+    background: #101d34;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+
+    h3 {
+        color: #ff2d75;
+        margin-bottom: 8px;
+    }
+
+    ul {
+        margin-top: 10px;
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 8px;
+    }
+}

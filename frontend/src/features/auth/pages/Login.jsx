@@ -3,12 +3,14 @@ import "./Login.scss";
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 const Login = () => {
+    const navigate=useNavigate()
     const { loading, handleLogin } = useAuth()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const submitHandler = async (e) => {
         handleLogin({ email, password })
         alert('Login success')
+        navigate('/')
     }
     if (loading)
         return (<main><h1>Loading...</h1></main>)

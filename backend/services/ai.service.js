@@ -87,7 +87,8 @@ export const interviewReportSchema = z.object({
         })
     ).describe(
         "Day-wise preparation roadmap"
-    )
+    ),
+    title: z.string().describe("The title of the job for which the interview report is generated")
 });
 
 export async function generateInterviewReport({
@@ -95,7 +96,6 @@ export async function generateInterviewReport({
     selfDescription,
     jobDescription
 }) {
-
     if (!process.env.GOOGLE_GENAI_API_KEY) {
         throw new Error(
             "GOOGLE_GENAI_API_KEY is missing"
@@ -107,9 +107,7 @@ export async function generateInterviewReport({
     });
 
     const prompt = `
-You are an expert technical recruiter, hiring manager, and interview coach.
-
-Analyze the candidate's profile and the job description.
+You are an expert technical recruiter.
 
 Resume:
 ${resume}
@@ -122,38 +120,38 @@ ${jobDescription}
 
 Generate:
 
-1. matchScore (0-100)
-2. summary
-3. 10 technicalQuestions
-4. 5 behavioralQuestions
-5. skillGaps
-6. 7-day preparationPlan
+1. title
+2. matchScore
+3. summary
+4. 10 technicalQuestions
+5. 5 behavioralQuestions
+6. skillGaps
+7. 7-day preparationPlan
 
-Return only valid JSON matching the provided schema.
+Return only valid JSON.
 `;
 
     try {
+        const response =
+            await ai.models.generateContent({
+                model: "gemini-2.5-flash",
 
-        const response = await ai.models.generateContent({
-            model: "gemini-2.5-flash",
+                contents: prompt,
 
-            contents: prompt,
+                config: {
+                    responseMimeType:
+                        "application/json",
 
-            config: {
-                responseMimeType: "application/json",
-                responseSchema: zodToJsonSchema(
-                    interviewReportSchema
-                )
-            }
-        });
-        console.log(response.text);
+                    responseSchema:
+                        zodToJsonSchema(
+                            interviewReportSchema
+                        )
+                }
+            });
+
+        return JSON.parse(response.text);
     } catch (error) {
-
-        console.error(
-            "Error generating interview report:",
-            error
-        );
-
+        console.error(error);
         throw error;
     }
 }
