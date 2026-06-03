@@ -94,6 +94,10 @@ const interviewReportSchema = new mongoose.Schema(
             min: 0,
             max: 100
         },
+        summary: {
+            type: String,
+            required: [true, "Summary is Required"]
+        },
         technicalQuestions: [technicalQuestionSchema],
         behavioralQuestions: [behaviouralQuestionSchema],
         skillGaps: [skillGapSchema],
