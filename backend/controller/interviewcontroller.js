@@ -20,19 +20,74 @@ export const generateInterviewReportController = async (req, res) => {
                 selfDescription,
                 jobDescription
             });
-
         console.log(
-            "AI RESPONSE:",
             JSON.stringify(
                 interviewReportByAi,
                 null,
                 2
             )
         );
+        const interviewReport =
+            await InterviewReport.create({
+                title: interviewReportByAi.title,
 
-        return res.status(200).json({
+                matchScore:
+                    interviewReportByAi.matchScore,
+
+                summary:
+                    interviewReportByAi.summary,
+
+                technicalQuestions:
+                    (interviewReportByAi.technicalQuestions || []).map(
+                        (question) => ({
+                            question,
+                            intention:
+                                "Technical assessment",
+                            answer:
+                                "Prepare a detailed explanation with examples."
+                        })
+                    ),
+
+                behavioralQuestions:
+                    (interviewReportByAi.behavioralQuestions || []).map(
+                        (question) => ({
+                            question,
+                            intention:
+                                "Behavioral assessment",
+                            answer:
+                                "Use STAR method while answering."
+                        })
+                    ),
+
+                skillGaps:
+                    (interviewReportByAi.skillGaps || []).map(
+                        (skill) => ({
+                            skill,
+                            severity: "medium"
+                        })
+                    ),
+
+                preparationPlan:
+                    (interviewReportByAi.preparationPlan || []).map(
+                        (item, index) => ({
+                            day: index + 1,
+                            focus: item.split(":")[0],
+                            tasks: [item]
+                        })
+                    ),
+
+                user: req.user.userId,
+
+                resume: resumeContent,
+
+                selfDescription,
+
+                jobDescription
+            });
+
+        return res.status(201).json({
             success: true,
-            aiResponse: interviewReportByAi
+            interviewReport
         });
 
     } catch (error) {

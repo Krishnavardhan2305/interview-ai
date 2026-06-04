@@ -29,6 +29,7 @@ const Home = () => {
             selfDescription,
             resumeFile
         );
+        console.log("Generated Data:", data);
         navigate(`/interview/${data._id}`);
     };
 
