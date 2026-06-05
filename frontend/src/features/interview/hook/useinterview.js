@@ -50,6 +50,7 @@ export const useInterview = () => {
         let response = null;
         try {
             response = await getAllInterviewReports();
+            console.log("REPORTS RESPONSE:", response);
             setReports(response.interviewReports);
         } catch (error) {
             console.error("Error fetching reports:", error);
@@ -57,7 +58,7 @@ export const useInterview = () => {
         finally {
             setLoading(false);
         }
-        return response.interviewReports;
+        return response?.interviewReports || [];
     }
 
     useEffect(() => {

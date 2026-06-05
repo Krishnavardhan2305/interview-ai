@@ -109,11 +109,11 @@ export async function generateInterviewReport({
     const prompt = `
 You are an expert technical recruiter.
 
-Resume:
-${resume}
+Resume Content:
+${resume || "No resume provided"}
 
 Self Description:
-${selfDescription}
+${selfDescription || "Not provided"}
 
 Job Description:
 ${jobDescription}

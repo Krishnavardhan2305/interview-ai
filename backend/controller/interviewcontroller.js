@@ -1,6 +1,6 @@
 import InterviewReport from "../models/interviewreportmodel.js";
 import { generateInterviewReport } from "../services/ai.service.js";
-
+import { extractPdfText } from "../config/pdfParser.js";
 export const generateInterviewReportController = async (req, res) => {
     try {
         console.log("FILE:", req.file);
@@ -9,10 +9,32 @@ export const generateInterviewReportController = async (req, res) => {
         let resumeContent = "";
 
         if (req.file) {
-            resumeContent = "Resume Uploaded";
+            try {
+                resumeContent = await extractPdfText(
+                    req.file.buffer
+                );
+
+                console.log(
+                    "Resume Extracted:",
+                    resumeContent.substring(0, 500)
+                );
+            } catch (error) {
+                console.error(
+                    "PDF Parse Error:",
+                    error
+                );
+
+                return res.status(400).json({
+                    message:
+                        "Unable to read PDF resume"
+                });
+            }
         }
 
-        const { selfDescription, jobDescription } = req.body;
+        const {
+            selfDescription,
+            jobDescription
+        } = req.body;
 
         const interviewReportByAi =
             await generateInterviewReport({
@@ -20,6 +42,7 @@ export const generateInterviewReportController = async (req, res) => {
                 selfDescription,
                 jobDescription
             });
+
         console.log(
             JSON.stringify(
                 interviewReportByAi,
@@ -27,9 +50,11 @@ export const generateInterviewReportController = async (req, res) => {
                 2
             )
         );
+
         const interviewReport =
             await InterviewReport.create({
-                title: interviewReportByAi.title,
+                title:
+                    interviewReportByAi.title,
 
                 matchScore:
                     interviewReportByAi.matchScore,
@@ -38,43 +63,47 @@ export const generateInterviewReportController = async (req, res) => {
                     interviewReportByAi.summary,
 
                 technicalQuestions:
-                    (interviewReportByAi.technicalQuestions || []).map(
-                        (question) => ({
-                            question,
-                            intention:
-                                "Technical assessment",
-                            answer:
-                                "Prepare a detailed explanation with examples."
-                        })
-                    ),
+                    (
+                        interviewReportByAi.technicalQuestions ||
+                        []
+                    ).map((question) => ({
+                        question,
+                        intention:
+                            "Technical assessment",
+                        answer:
+                            "Prepare a detailed explanation with examples."
+                    })),
 
                 behavioralQuestions:
-                    (interviewReportByAi.behavioralQuestions || []).map(
-                        (question) => ({
-                            question,
-                            intention:
-                                "Behavioral assessment",
-                            answer:
-                                "Use STAR method while answering."
-                        })
-                    ),
+                    (
+                        interviewReportByAi.behavioralQuestions ||
+                        []
+                    ).map((question) => ({
+                        question,
+                        intention:
+                            "Behavioral assessment",
+                        answer:
+                            "Use STAR method while answering."
+                    })),
 
                 skillGaps:
-                    (interviewReportByAi.skillGaps || []).map(
-                        (skill) => ({
-                            skill,
-                            severity: "medium"
-                        })
-                    ),
+                    (
+                        interviewReportByAi.skillGaps ||
+                        []
+                    ).map((skill) => ({
+                        skill,
+                        severity: "medium"
+                    })),
 
                 preparationPlan:
-                    (interviewReportByAi.preparationPlan || []).map(
-                        (item, index) => ({
-                            day: index + 1,
-                            focus: item.split(":")[0],
-                            tasks: [item]
-                        })
-                    ),
+                    (
+                        interviewReportByAi.preparationPlan ||
+                        []
+                    ).map((item, index) => ({
+                        day: index + 1,
+                        focus: item.split(":")[0],
+                        tasks: [item]
+                    })),
 
                 user: req.user.userId,
 
@@ -98,7 +127,6 @@ export const generateInterviewReportController = async (req, res) => {
         });
     }
 };
-
 export const getInterviewReportbyIdController = async (
     req,
     res
@@ -147,9 +175,12 @@ export const getAllInterviewReportsController =
             const interviewReports =
                 await InterviewReport.find({
                     user: req.user.userId
+                }).sort({
+                    createdAt: -1
                 });
 
             return res.status(200).json({
+                count: interviewReports.length,
                 interviewReports
             });
 
