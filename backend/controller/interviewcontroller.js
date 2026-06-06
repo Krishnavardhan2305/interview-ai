@@ -122,8 +122,24 @@ export const generateInterviewReportController = async (req, res) => {
     } catch (error) {
         console.error(error);
 
+        if (error.status === 429) {
+            return res.status(429).json({
+                message:
+                    "AI service quota exceeded. Please try again later."
+            });
+        }
+
+        if (error.status === 503) {
+            return res.status(503).json({
+                message:
+                    "AI service is currently busy. Please try again in a few minutes."
+            });
+        }
+
         return res.status(500).json({
-            message: error.message
+            message:
+                error.message ||
+                "Something went wrong"
         });
     }
 };

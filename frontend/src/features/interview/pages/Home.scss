@@ -300,3 +300,32 @@ button {
     }
 }
 
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 2rem;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    padding: 0.8rem 1.2rem;
+
+    border: none;
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.08);
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: rgba(255,255,255,0.15);
+}

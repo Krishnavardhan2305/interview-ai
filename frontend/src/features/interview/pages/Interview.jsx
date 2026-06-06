@@ -2,9 +2,11 @@ import { useState } from "react";
 import "./Interview.scss";
 import { useInterview } from "../hook/useinterview.js";
 import { useParams } from "react-router-dom";
+import { FiArrowLeft } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 const Interview = () => {
     const [activeTab, setActiveTab] = useState("technical");
-
+    const navigate = useNavigate();
     const { report } = useInterview();
     const { interviewId } = useParams();
 
@@ -17,8 +19,14 @@ const Interview = () => {
     }
     return (
         <div className="result-page">
-
             <div className="sidebar">
+                    <button
+                        className="back-btn"
+                        onClick={() => navigate("/")}
+                    >
+                        <FiArrowLeft />
+                        Back to Dashboard
+                    </button>
                 <h3>Sections</h3>
 
                 <button

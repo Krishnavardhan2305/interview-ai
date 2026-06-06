@@ -3,11 +3,11 @@ import React, {
     useRef,
     useEffect
 } from "react";
-
+import { FiLogOut } from "react-icons/fi";
 import { useInterview } from "../hook/useinterview";
 import "./Home.scss";
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "../../auth/hooks/useAuth";
 const Home = () => {
     const {
         loading,
@@ -17,12 +17,15 @@ const Home = () => {
     } = useInterview();
 
     const navigate = useNavigate();
-
+    const { handleLogout } = useAuth();
     const [jobDescription, setJobDescription] = useState("");
     const [selfDescription, setSelfDescription] = useState("");
     const [resumeFile, setResumeFile] = useState(null);
     const totalReports = reports?.length || 0;
-
+    const logoutUser = async () => {
+        await handleLogout();
+        navigate("/login");
+    };
     const averageScore =
         totalReports > 0
             ? Math.round(
@@ -79,6 +82,15 @@ const Home = () => {
 
     return (
         <div className="home">
+            <div className="top-navbar">
+                <button
+                    className="logout-btn"
+                    onClick={logoutUser}
+                >
+                    <FiLogOut />
+                    Logout
+                </button>
+            </div>
             <div className="hero">
                 <h1>
                     Create Your Custom
@@ -231,7 +243,7 @@ const Home = () => {
                     </div>
                 )}
             </div>
-        </div>
+        </div >
     );
 };
 
